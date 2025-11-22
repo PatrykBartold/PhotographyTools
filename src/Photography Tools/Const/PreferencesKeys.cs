@@ -13,5 +13,6 @@ public static class PreferencesKeys
 
     // App preferences
     public const string
-        SettingsKey = "Settings";
+        SettingsKey = "Settings",
+        ThemeKey = "Theme";
 }

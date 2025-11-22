@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:Photography_Tools.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:themeservice="clr-namespace:Photography_Tools.Services.ThemeService"
     x:Name="SettingsPage0"
     x:Class="Photography_Tools.Pages.SettingsPage"
     x:DataType="viewmodels:SettingsViewModel"
@@ -90,6 +91,46 @@
             <Border
                 Style="{StaticResource StandardBorder}"
                 Margin="0,15,0,0">
+                <VerticalStackLayout
+                    RadioButtonGroup.GroupName="theme"
+                    RadioButtonGroup.SelectedValue="{Binding ThemeSelected}">
+                    <Label
+                        Text="Theme"
+                        Style="{StaticResource LabelMediumBold}" 
+                    />
+
+                    <RadioButton
+                        Content="System"
+                        Value="{Static themeservice:IThemeService.System}"
+                        FontSize="Medium">
+                        <RadioButton.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeThemeCommand}" CommandParameter="{Static themeservice:IThemeService.System}"/>
+                        </RadioButton.GestureRecognizers>
+                    </RadioButton>
+
+                    <RadioButton
+                        Content="Light"
+                        Value="{Static themeservice:IThemeService.Light}"
+                        FontSize="Medium">
+                        <RadioButton.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeThemeCommand}" CommandParameter="{Static themeservice:IThemeService.Light}"/>
+                        </RadioButton.GestureRecognizers>
+                    </RadioButton>
+
+                    <RadioButton
+                        Content="Dark"
+                        Value="{Static themeservice:IThemeService.Dark}"
+                        FontSize="Medium">
+                        <RadioButton.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeThemeCommand}" CommandParameter="{Static themeservice:IThemeService.Dark}"/>
+                        </RadioButton.GestureRecognizers>
+                    </RadioButton>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border
+                Style="{StaticResource StandardBorder}"
+                Margin="0,15,0,0">
                 <VerticalStackLayout>
                     <Label
                         Text="Preferences"
@@ -110,7 +151,7 @@
                 Margin="0,15,0,0">
                 <VerticalStackLayout>
                     <Label
-                        Text="Licenses"
+                        Text="Licens"
                         Style="{StaticResource LabelMediumBold}" 
                     />
 
