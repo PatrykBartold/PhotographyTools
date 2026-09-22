@@ -8,7 +8,8 @@
 
     <Shell.FlyoutHeader>
         <VerticalStackLayout
-            Margin="0,30">
+            BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray950}}"
+            Padding="0,30">
             <Image Source="{AppThemeBinding Dark='logo_light.png', Light='logo_dark.png' }" HeightRequest="64" />
             <Label
                 Style="{StaticResource LabelLarge}"
@@ -26,15 +27,15 @@
     </Shell.FlyoutHeader>
 
     <ShellContent
-        Title="Depth of Field Calculator"
-        ContentTemplate="{DataTemplate pages:DofCalcPage}"
-        Route="DofCalcPage"
-    />
-
-    <ShellContent
         Title="Astrophotography"
         ContentTemplate="{DataTemplate pages:AstroTimeCalcPage}"
         Route="AstroTimeCalcPage"
+    />
+
+    <ShellContent
+        Title="Depth of Field Calculator"
+        ContentTemplate="{DataTemplate pages:DofCalcPage}"
+        Route="DofCalcPage"
     />
 
     <ShellContent

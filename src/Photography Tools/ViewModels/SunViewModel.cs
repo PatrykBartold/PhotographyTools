@@ -49,7 +49,6 @@ public partial class SunViewModel : AstroLocationViewModel
 
         if (location is null)
         {
-            await messageService.ShowMessageAsync("No location selected", "Select a location to get results", "Ok");
             return;
         }
 

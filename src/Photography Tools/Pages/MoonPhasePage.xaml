@@ -107,7 +107,8 @@
                     <Entry
                         InputTransparent="True"
                         Text="{Binding LocationName}"
-                        Style="{StaticResource StandardReadonlyEntry}">
+                        Style="{StaticResource StandardReadonlyEntry}"
+                        Placeholder="Select location">
                     </Entry>
                 
                     <Border.GestureRecognizers>

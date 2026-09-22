@@ -1,4 +1,5 @@
 ﻿using Photography_Tools.Services.ConfigService;
+using Photography_Tools.Services.ThemeService;
 
 namespace Photography_Tools.ViewModels;
 
@@ -7,17 +8,22 @@ public partial class SettingsViewModel : ObservableObject
     private readonly IPreferencesService preferencesService;
     private readonly ISettingsService settingsService;
     private readonly IUiMessageService uiMessageService;
+    private readonly IThemeService themeService;
 
     private Settings currentSettings = ISettingsService.DefaultSettings;
 
     [ObservableProperty]
     private bool isUseOfflineDataSourceModeEnabled = false, isVibrationsEnabled = true, isVibrationsSupported = true;
 
-    public SettingsViewModel(IPreferencesService preferencesService, ISettingsService settingsService, IUiMessageService uiMessageService)
+    [ObservableProperty]
+    private int themeSelected;
+
+    public SettingsViewModel(IPreferencesService preferencesService, ISettingsService settingsService, IUiMessageService uiMessageService, IThemeService themeService)
     {
         this.preferencesService = preferencesService;
         this.settingsService = settingsService;
         this.uiMessageService = uiMessageService;
+        this.themeService = themeService;
     }
 
     [RelayCommand]
@@ -43,8 +49,16 @@ public partial class SettingsViewModel : ObservableObject
     [RelayCommand]
     private void OnAppearing()
     {
+        ThemeSelected = preferencesService.GetPreference(PreferencesKeys.ThemeKey, 0);
         SetValues(settingsService.GetSettings());
         IsVibrationsSupported = Vibration.Default.IsSupported;
+    }
+
+    [RelayCommand]
+    private async Task ChangeThemeAsync(int theme)
+    {
+        ThemeSelected = theme;
+        await themeService.SetThemeAsync(theme);
     }
 
     [RelayCommand]

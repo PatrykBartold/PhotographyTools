@@ -10,9 +10,9 @@ public class UiMessageService : IUiMessageService
             return;
 
         if (MainThread.IsMainThread)
-            await mainPage.DisplayAlert(title, message, cancel);
+            await mainPage.DisplayAlertAsync(title, message, cancel);
         else
-            MainThread.BeginInvokeOnMainThread(async () => { await mainPage.DisplayAlert(title, message, cancel); });
+            MainThread.BeginInvokeOnMainThread(async () => { await mainPage.DisplayAlertAsync(title, message, cancel); });
     }
 
     public async Task<bool> ShowMessageAsync(string title, string message, string accept = "Ok", string cancel = "Cancel")
@@ -23,12 +23,12 @@ public class UiMessageService : IUiMessageService
             return false;
 
         if (MainThread.IsMainThread)
-            return await mainPage.DisplayAlert(title, message, accept, cancel);
+            return await mainPage.DisplayAlertAsync(title, message, accept, cancel);
 
         bool result = false;
         MainThread.BeginInvokeOnMainThread(async () =>
         {
-            result = await mainPage.DisplayAlert(title, message, accept, cancel);
+            result = await mainPage.DisplayAlertAsync(title, message, accept, cancel);
         });
 
         return result;

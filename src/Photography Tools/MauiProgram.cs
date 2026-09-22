@@ -4,8 +4,10 @@ using Photography_Tools.Components.Popups;
 using Photography_Tools.DataAccess.AstroDataAccess;
 using Photography_Tools.Services.ConfigService;
 using Photography_Tools.Services.KeyValueStoreService;
+using Photography_Tools.Services.ThemeService;
 
 namespace Photography_Tools;
+
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -51,6 +53,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<IPhotographyCalculationsService, PhotographyCalculationsService>();
         builder.Services.AddSingleton<IPreferencesService, PreferencesService>();
         builder.Services.AddSingleton<ISettingsService, SettingsService>();
+        builder.Services.AddSingleton<IThemeService, ThemeService>();
         builder.Services.AddSingleton<IUiMessageService, UiMessageService>();
 
         // ViewModel
