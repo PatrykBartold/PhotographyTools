@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
 using Photography_Tools.Platforms.Android;
 
@@ -12,5 +13,13 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnCreate(savedInstanceState);
         OnBackPressedDispatcher.AddCallback(this, new BackPress(this));
+    }
+
+    public override async void OnConfigurationChanged(Configuration newConfig)
+    {
+        base.OnConfigurationChanged(newConfig);
+
+        Window?.DecorView?.SetBackgroundColor((newConfig.UiMode & UiMode.NightMask) == UiMode.NightYes ?
+                Android.Graphics.Color.Black : Android.Graphics.Color.White);
     }
 }
